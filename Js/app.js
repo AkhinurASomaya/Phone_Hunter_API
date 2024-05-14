@@ -65,6 +65,18 @@ const processSearch = (dataLimit) => {
     loadPhones(searchText, dataLimit)
     searchField.value = '';
 };
+// handle search btn click
+document.getElementById('btn-search').addEventListener('click', () => {
+    processSearch(10)
+})
+
+// search input field enter key handler
+document.getElementById('search-field').addEventListener('keypress', (e) => {
+    if(e.key === 'Enter'){
+        processSearch(10)
+    }
+})
+
 
 const toggleSpinner = (isLoading) => {
     const loaderSection = document.getElementById('loader')
@@ -74,3 +86,45 @@ const toggleSpinner = (isLoading) => {
         loaderSection.classList.add('d-none')
     }
 };
+//not the best way to show all
+document.getElementById('btn-show-all').addEventListener('click', () => {
+    processSearch()
+})
+
+
+const loadPhoneDetails = async(id) => {
+    const url = `https://openapi.programming-hero.com/api/phone/${id}`;
+    try{
+        const res = await fetch(url);
+        const data = await res.json();
+        displayPhoneDetails(data.data)
+    }catch(error){
+        console.error(error)
+    } 
+    
+} ;
+
+
+
+const displayPhoneDetails = phone => {
+    console.log(phone)
+    const modalTitle = document.getElementById('phoneDetailModalLabel');
+    modalTitle.innerText = phone.name
+
+    const phoneDetails = document.getElementById('phone-details');
+    phoneDetails.innerHTML = `
+    <p>Release Date: ${phone.releaseDate ? phone.releaseDate : 'No release Date Found'}</p>
+    <p>Others: ${phone.others.Bluetooth}</p>
+    <p>Storage: ${phone.mainFeatures.storage}</p>
+    `
+    
+};
+
+
+
+
+
+
+
+
+loadPhones('apple')
