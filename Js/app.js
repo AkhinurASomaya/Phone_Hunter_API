@@ -54,8 +54,6 @@ const displayPhone = (phones, dataLimit) => {
     // stop loader or spinner
     toggleSpinner(false)
 };
-const displayPhone = (phones, dataLimit) => {
-};
 
 const processSearch = (dataLimit) => {
     //start loader
