@@ -12,10 +12,10 @@ const displayPhone = (phones, dataLimit) => {
     const phoneContainer = document.getElementById('phone-container');
     // clear previous data
     phoneContainer.textContent = '';
-    //display 10 phones only
+    //display 12 phones only
     const showAll =  document.getElementById('show-all')
-    if(dataLimit && phones.length > 10){
-        phones = phones.slice(0, 10)
+    if(dataLimit && phones.length > 12){
+        phones = phones.slice(0, 12)
       showAll.classList.remove('d-none')
     }else{
         showAll.classList.add('d-none')
